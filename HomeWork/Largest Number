@@ -1,0 +1,28 @@
+public class Solution {
+    // DO NOT MODIFY THE LIST. IT IS READ ONLY
+    public String largestNumber(final List<Integer> A) {
+        
+        Collections.sort(A, new Comparator<Integer>()
+        {
+            
+            public int compare(Integer X, Integer Y)
+            {
+                
+                String XY = X.toString() + Y.toString();
+                String YX = Y.toString() + X.toString();
+                
+                return XY.compareTo(YX) > 0 ? -1 : 1;
+            }
+        });
+        
+        StringBuilder str = new StringBuilder();
+        int countofzero = 0;
+        
+        for(int i=0; i<A.size(); i++){
+            if(A.get(i)==0) countofzero++;
+            str.append(A.get(i));
+        }
+        if(countofzero == A.size()) return "0";
+        return str.toString();
+    }
+}
